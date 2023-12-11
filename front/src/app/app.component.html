@@ -1,0 +1,45 @@
+<!-- app.component.html -->
+
+<div class="jumbotron text-center">
+  <h1 class="display-4">教師情報</h1>
+  <p class="lead">以下は登録されている教師の情報です。</p>
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>ユーザー名</th>
+        <th>メール</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teacher of teachers">
+        <td>{{teacher.id}}</td>
+        <td>{{teacher.userName}}</td>
+        <td>{{teacher.email}}</td>
+        <td>
+          <button class="btn btn-primary" *ngIf="teacher.id" (click)="editTeacher(teacher.id, teacher)">編集</button>
+          <button class="btn btn-danger" *ngIf="teacher.id" (click)="deleteTeacher(teacher.id)">削除</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>新しい教師を追加</h2>
+  <form (ngSubmit)="addTeacher()" #frm="ngForm" class="mb-3">
+    <div class="form-group">
+      <label for="userName">ユーザー名:</label>
+      <input type="text" id="userName" [(ngModel)]="newTeacher.userName" name="userName" required class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="email">メール:</label>
+      <input type="email" id="email" [(ngModel)]="newTeacher.email" name="email" required class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-success">追加</button>
+  </form>
+</div>

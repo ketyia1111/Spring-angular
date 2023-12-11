@@ -1,0 +1,1 @@
+insert into teacher(user_name,email)values('横山','keita@keit.com');
